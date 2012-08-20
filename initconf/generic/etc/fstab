@@ -1,0 +1,5 @@
+/dev/ufs/root   /               ufs     rw,noatime,sync                 1       1
+## 32M /var (bytes below)
+tmpfs           /var            tmpfs   rw,size=33554432                0       0
+## 20M /tmp 
+tmpfs           /tmp            tmpfs   rw,mode=777,size=20971521       0       0

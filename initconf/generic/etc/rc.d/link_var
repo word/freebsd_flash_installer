@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# BEFORE:  NETWORKING
+
+# creates symlinks in /var to persistent data in /usr/var
+# set LINK_VAR="YES" in rc.conf to enable
+
+. /etc/rc.subr
+
+name="link_var"
+stop_cmd=":"
+
+link_var() {
+    echo "linking /var"
+    # persist /var/db/pkg
+    mkdir -p /usr/var/db/pkg
+    /bin/rm -rf /var/db/pkg
+    /bin/ln -s /usr/var/db/pkg /var/db/pkg
+    # persist /var/cron
+    mkdir -p /usr/var/cron
+    /bin/rm -rf /var/cron
+    /bin/ln -s /usr/var/cron /var/cron
+    # persist /var/named
+    mkdir -p /usr/var/named 
+    /bin/rmdir /var/named
+    /bin/ln -s /usr/var/named /var/named
+}
+
+link_var
