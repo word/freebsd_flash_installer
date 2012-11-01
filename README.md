@@ -48,7 +48,7 @@ Run the installer as root.  For example:
 % sudo freebsd_flash_installer/bin/install.sh -c freebsd_flash_installer/etc/generic.conf -d da0 -m /mnt -n ferret.example.org
 ```
 
-If you get the following error message
+If you get the following error message:
 
 ```
 Error: /dev/da0 already contains a partition table.
