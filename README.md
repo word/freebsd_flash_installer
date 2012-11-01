@@ -38,7 +38,7 @@ Clone the installer to your FreeBSD machine:
 git clone https://github.com/word/freebsd_flash_installer.git
 ```
 
-In freebsd_flash_installer/etc/ you'll find a couple of example configuration files.  One for a generic FreeBSD installation with a few packages and one for an alix firewall.  You can use those examples and craft your own config that suits your needs, but for now we'll use the generic config (generic.conf).
+In freebsd_flash_installer/etc/ you'll find a couple of example configuration files.  One for a generic FreeBSD installation with a few additional packages and one for an alix firewall.  You can use these examples and craft your own config that suits your needs, but for for the sake of this example we'll use the generic config (generic.conf).
 
 Plug in your flash card/USB stick, run _dmesg_ and note down the device name (e.g. da0)
 
@@ -48,3 +48,17 @@ Run the installer as root.  For example:
 % sudo freebsd_flash_installer/bin/install.sh -c freebsd_flash_installer/etc/generic.conf -d da0 -m /mnt -n ferret.example.org
 ```
 
+If you get the following error message
+
+```
+Error: /dev/da0 already contains a partition table.
+```
+
+It means that your usb stick already contains a partition table.  You can clear
+it with the destroy_geom script provided:
+
+```
+sudo ./freebsd_flash_installer/bin/destroy_geom.sh -d da0 
+```
+
+Run the installer again to continue installation.
