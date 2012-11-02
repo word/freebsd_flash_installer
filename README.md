@@ -40,7 +40,8 @@ Supported releases
 Quick start
 ===========
 
-Perquisites:
+Prerequisites:
+
  * A box running FreeBSD (9.0 or higher, but it _should_ work on 8.x too)
  * git installed
  * USB stick or CF/SD card with a reader that's supported under FreeBSD
