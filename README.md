@@ -12,17 +12,17 @@ Features
  * Can install packages (via pkg_add -r)
  * Uses GPT partitions
    * Currently it will only create a singe root and freebsd-boot partition
- * File systems mounted with 'noatime' by default to save disk writes and extend 
-   the life of flash media
- * Uses GEOM labels in fstab, which means the system will boot as usual even
-   when the disk device name changes (e.g. the flash media is moved to a
-   different port/computer)
  * Uses TMPFS for /var and /tmp, but persists:
    * /var/db/pkg
    * /var/cron
    * /var/named/etc
+ * File systems mounted with 'noatime' by default to save disk writes and extend 
+   life of the flash media
+ * Uses GEOM labels in fstab so that if a disk device name changes (e.g. flash
+   card moved to a different computer/port) the system will still boot
+   correctly.
  * Can install arbitrary configuration files
- * Can configure a network interface to obtain network configuration via DHCP 
+ * Can configure network interface (DHCP only at the moment)
  * Alix specific features:
    * Serial console enabled
    * Tuned kernel:
@@ -50,6 +50,7 @@ Clone the installer on your FreeBSD box:
 
 ```
 git clone https://github.com/word/freebsd_flash_installer.git
+cd freebsd_flash_installer
 ```
 
 In freebsd_flash_installer/etc/ you'll find a couple of example configuration
@@ -64,7 +65,7 @@ Plug in your flash card/USB stick, run _dmesg_ and note down the device name
 Run the installer as root.  For example:
 
 ```
-% sudo freebsd_flash_installer/bin/install.sh -c freebsd_flash_installer/etc/generic.conf -d da0 -m /mnt -n ferret.example.org
+% sudo ./bin/install.sh -c ./etc/generic.conf -d da0 -m /mnt -n ferret.example.org
 ```
 
 If you get the following error message:
@@ -77,10 +78,12 @@ It means that your usb stick already contains a partition table.  You can clear
 it with the destroy_geom.sh script provided:
 
 ```
-sudo ./freebsd_flash_installer/bin/destroy_geom.sh -d da0 
+sudo ./bin/destroy_geom.sh -d da0 
 ```
 
 Run the installer again to continue with the installation.
 
-More detailed docs are on the wiki:
+The root password will be set to 'flash' by default. 
+
+More details on the wiki:
  * https://github.com/word/freebsd_flash_installer/wiki
