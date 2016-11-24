@@ -1,3 +1,11 @@
+
+NOTE:
+
+I switched to using NanoBSD for my embedded needs and therefore this is no longer maintained.
+
+My NanoBSD alix build is available here: https://github.com/zx23/nanobsd-alix
+
+
 FreeBSD flash installer
 =======================
 
